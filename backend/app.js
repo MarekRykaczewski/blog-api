@@ -8,4 +8,9 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URL
 
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
 app.listen(5000, () => console.log('Server started on port 5000'))
