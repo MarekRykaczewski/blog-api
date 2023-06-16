@@ -6,3 +6,10 @@ exports.posts_get = async (req, res, next) => {
         ...allPosts
     ])
 }
+
+exports.post_get = async (req, res, next) => {
+    const post = await Post.findById(req.params.id).exec()
+    res.json({
+        post: post
+    })
+}
