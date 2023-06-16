@@ -11,4 +11,6 @@ router.get("/posts/:id", post_controller.post_get)
 
 router.post("/post", post_controller.post_create)
 
+router.delete("/posts/:id", post_controller.post_delete)
+
 module.exports = router;
