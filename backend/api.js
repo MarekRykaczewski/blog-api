@@ -8,7 +8,7 @@ const post_controller = require('./controllers/postController')
 
 // Auth Routes
 
-router.post("/users", auth_controller.signup_post)
+router.post("/signup", auth_controller.signup_post)
 
 router.post("/login", auth_controller.signin_post)
 
