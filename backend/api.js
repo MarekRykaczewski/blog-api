@@ -10,6 +10,8 @@ const post_controller = require('./controllers/postController')
 
 router.post("/users", auth_controller.signup_post)
 
+router.post("/login", auth_controller.signin_post)
+
 // Post Routes
 
 router.get("/posts", post_controller.posts_get)
