@@ -38,3 +38,26 @@ exports.post_delete = async (req, res, next) => {
     console.log("post deleted")
     res.end()
 }
+
+exports.post_update = async (req, res, next) => {
+    try {
+        // Mock user ID
+        const mockUserId = "648c39c27487491e3f183094";
+
+        const updatedFields = {
+            title: req.body.title,
+            content: req.body.content,
+            published: req.body.published
+        };
+
+        const result = await Post.findByIdAndUpdate(
+            req.params.id,
+            updatedFields,
+            { new: true, fields: ['title', 'content', 'published'] }
+        );
+
+        res.end();
+    } catch (err) {
+        return next(err);
+    }
+};
