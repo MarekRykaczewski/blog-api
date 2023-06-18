@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
@@ -63,6 +65,22 @@ passport.deserializeUser(async function(id, done) {
     done(err);
   };
 });
+
+passport.use(
+  new JWTstrategy(
+    {
+      secretOrKey: process.env.TOKEN_SECRET,
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+    },
+    async (token, done) => {
+      try {
+        return done(null, token.user);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
 
 app.use('/', api);
 
