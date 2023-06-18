@@ -28,3 +28,8 @@ exports.comments_get = async (req, res, next) => {
     const comments = await Comment.find({ post: req.params.id }).exec();
     res.json(comments);
 }
+
+exports.comment_delete = async (req, res, next) => {
+    await Comment.findByIdAndDelete(req.params.commentId).exec()
+    res.end()
+}

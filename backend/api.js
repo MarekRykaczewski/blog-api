@@ -29,6 +29,8 @@ router.put("/posts/:id", post_controller.post_update)
 
 router.post('/posts/:id/comment', comment_controller.comment_post)
 
+router.delete('/posts/:id/comments/:commentId', comment_controller.comment_delete)
+
 router.get('/posts/:id/comments', comment_controller.comments_get)
 
 module.exports = router;
