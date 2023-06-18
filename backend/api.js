@@ -20,11 +20,11 @@ router.get("/posts", post_controller.posts_get)
 
 router.get("/posts/:id", post_controller.post_get)
 
-router.post("/post", post_controller.post_create)
+router.post("/post", passport.authenticate('jwt', { session: false }), post_controller.post_create)
 
-router.delete("/posts/:id", post_controller.post_delete)
+router.delete("/posts/:id", passport.authenticate('jwt', { session: false }), post_controller.post_delete)
 
-router.put("/posts/:id", post_controller.post_update)
+router.put("/posts/:id", passport.authenticate('jwt', { session: false }), post_controller.post_update)
 
 // Comment Routes
 
