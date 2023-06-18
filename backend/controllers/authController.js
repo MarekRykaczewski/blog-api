@@ -1,6 +1,8 @@
 const passport = require("passport");
 const User = require("../models/user")
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
 exports.signup_post = async (req, res, next) => {
     try {
@@ -40,13 +42,15 @@ exports.signin_post = async (req, res, next) => {
       }
       
       // Authentication succeeded
-      req.logIn(user, (err) => {
+      req.logIn(user, { session: false }, (err) => {
         if (err) {
           return next(err);
         }
-        
-        // Send a success response
-        return res.status(200).json({ message: "Authentication successful" });
+
+        const body = { _id: user._id, email: user.email }
+        const token = jwt.sign({ user: body }, process.env.TOKEN_SECRET)
+
+        return res.json({ token })
       });
     })(req, res, next);
   };
