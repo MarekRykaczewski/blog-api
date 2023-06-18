@@ -35,7 +35,6 @@ exports.post_create = async (req, res, next) => {
 
 exports.post_delete = async (req, res, next) => {
     await Post.findByIdAndDelete(req.params.id).exec()
-    console.log("post deleted")
     res.end()
 }
 
