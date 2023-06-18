@@ -7,6 +7,7 @@ exports.comment_post = async (req, res, next) => {
         const mockUserId = "648c39c27487491e3f183094"
 
         const comment = new Comment({
+            post: req.params.id,
             content: req.body.content,
             user: mockUserId,
         })
@@ -21,4 +22,9 @@ exports.comment_post = async (req, res, next) => {
     } catch (err) {
         return next(err)
     }
+}
+
+exports.comments_get = async (req, res, next) => {
+    const comments = await Comment.find({ post: req.params.id }).exec();
+    res.json(comments);
 }
