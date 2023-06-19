@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import "./App.css"
+import Nav from "./components/Nav";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <>
+      <Nav />
       <h1 className="text-3xl text-blue-500"> Posts </h1>
       {renderPosts()}
     </>
