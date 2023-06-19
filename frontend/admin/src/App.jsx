@@ -21,9 +21,8 @@ function App() {
 
   function renderPosts() {
     return posts.map((post) => (
-      <div key={post.id}>
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
+      <div key={post._id}>
+        <a href={`/post/${post._id}`}>{post.title} by {post.user.username}</a>
       </div>
     ));
   }
