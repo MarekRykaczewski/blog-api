@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      <h1> Posts </h1>
+      <h1 className="text-3xl text-blue-500"> Posts </h1>
       {renderPosts()}
     </>
   )
