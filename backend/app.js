@@ -6,6 +6,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
+const cors = require('cors');
 require('dotenv').config();
 
 const User = require('./models/user')
@@ -26,6 +27,7 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+app.use(cors());
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
