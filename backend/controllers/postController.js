@@ -1,7 +1,7 @@
 const Post = require('../models/post')
 
 exports.posts_get = async (req, res, next) => {
-    const allPosts = await Post.find().exec()
+    const allPosts = await Post.find().populate("user").exec()
     res.json([
         ...allPosts
     ])
